@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  playlistdb:
+    image: postgres
+    container_name: playlistdb
+    restart: always
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=mateu
+      - POSTGRES_DB=playlistdb
+    ports:
+      - 5432:5432
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+volumes:
+  dbdata:
