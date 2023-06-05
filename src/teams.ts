@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { errorChecked } from "./utils.js";
 import prisma from "./prisma-client.js";
+import playersRouter from "./players.js";
 
 const router = Router({ mergeParams: true });
 
@@ -53,5 +54,7 @@ router.delete(
     res.status(200).json({ deletedTeam, params: req.params });
   })
 );
+
+router.use("/:teamId/players", playersRouter);
 
 export default router;

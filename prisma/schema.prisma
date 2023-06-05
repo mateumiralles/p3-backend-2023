@@ -33,7 +33,7 @@ model Player {
   id          Int      @id @default(autoincrement())
   name        String
   fullName    String
-  dateOfBirth DateTime
+  dateOfBirth String
   position    String
   number      Int
   goals       Int      @default(0)
