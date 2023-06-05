@@ -1,14 +1,14 @@
 version: '3'
 
 services:
-  playlistdb:
+  entreamientodb:
     image: postgres
-    container_name: playlistdb
+    container_name: entreamientodb
     restart: always
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=mateu
-      - POSTGRES_DB=playlistdb
+      - POSTGRES_DB=entreamientodb
     ports:
       - 5432:5432
     volumes:

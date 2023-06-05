@@ -1,4 +1,3 @@
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -6,4 +5,36 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
+}
+
+model Entrenamiento {
+  id     Int     @id @default(autoincrement())
+  nombre String
+  tiempo Int     @default(40)
+  dia    String?
+
+  usuarioId Int
+  usuario   Usuario     @relation(fields: [usuarioId], references: [id])
+  Ejercicio Ejercicio[]
+}
+
+model Usuario {
+  id     Int    @id @default(autoincrement())
+  nombre String @unique
+  fechaRegistro DateTime @default(now())
+
+  entrenamientos Entrenamiento[]
+}
+
+model Ejercicio {
+  id            Int      @id @default(autoincrement())
+  nombre        String
+  descripcion   String?
+  repeticiones  Int
+  series        Int
+  peso          Float
+  fechaCreacion DateTime @default(now())
+
+  entrenamientoId Int
+  entrenamimento  Entrenamiento @relation(fields: [entrenamientoId], references: [id])
 }
