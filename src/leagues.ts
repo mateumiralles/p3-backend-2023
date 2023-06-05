@@ -1,6 +1,7 @@
 import { Router } from "express";
 import prisma from "./prisma-client.js";
 import { errorChecked } from "./utils.js";
+import teamsRouter from "./teams.js";
 
 const router = Router();
 
@@ -59,4 +60,7 @@ router.delete(
     res.status(200).json(deletedLeague);
   })
 );
+
+router.use("/:leagueId/teams", teamsRouter);
+
 export default router;
