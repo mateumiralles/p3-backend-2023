@@ -13,8 +13,8 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const result = await prisma.usuario.findMany({});
-    res.status(200).json(result);
+    const leagues = await prisma.league.findMany({});
+    res.status(200).json(leagues);
   } catch (e) {
     res.status(500).send({ type: e.constructor.name, message: e.toString() });
   }
@@ -23,15 +23,15 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const usuario = await prisma.usuario.findUnique({
+    const leagues = await prisma.league.findUnique({
       where: {
         id: Number(id),
       },
     });
-    if (usuario === null) {
-        res.status(404).json({error: `Usuario de id:${id} no ha sido encontrado!`})
+    if (leagues === null) {
+        res.status(404).json({error: `Liga de id:${id} no ha sido encontrada!`})
     }
-    res.status(200).json(usuario);
+    res.status(200).json(leagues);
   } catch (e) {
     res.status(500).send({ type: e.constructor.name, message: e.toString() });
   }

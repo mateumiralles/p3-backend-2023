@@ -1,7 +1,7 @@
 {
   "name": "p3-backend-2023",
   "version": "1.0.0",
-  "description": "Servidor de API para creación de entreamientos en casa hecho en express, typescript y prisma con postgres",
+  "description": "Servidor de API para creación de ligas de fútbol hecho en express, typescript y prisma con postgres",
   "main": "src/server.ts",
   "type": "module",
   "scripts": {

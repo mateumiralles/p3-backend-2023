@@ -7,34 +7,38 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Entrenamiento {
-  id     Int     @id @default(autoincrement())
-  nombre String
-  tiempo Int     @default(40)
-  dia    String?
-
-  usuarioId Int
-  usuario   Usuario     @relation(fields: [usuarioId], references: [id])
-  Ejercicio Ejercicio[]
+model League {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  
+  teams Team[]
 }
 
-model Usuario {
-  id     Int    @id @default(autoincrement())
-  nombre String @unique
-  fechaRegistro DateTime @default(now())
+model Team {
+  id      Int    @id @default(autoincrement())
+  name    String @unique
+  matches Int    @default(0)
+  wins    Int    @default(0)
+  loses   Int    @default(0)
+  drafts  Int    @default(0)
+  points  Int    @default(0)
 
-  entrenamientos Entrenamiento[]
+  leagueId Int
+  league   League @relation(fields: [leagueId], references: [id])
+
+  players Player[]
 }
 
-model Ejercicio {
-  id            Int      @id @default(autoincrement())
-  nombre        String
-  descripcion   String?
-  repeticiones  Int
-  series        Int
-  peso          Float
-  fechaCreacion DateTime @default(now())
+model Player {
+  id          Int      @id @default(autoincrement())
+  name        String
+  fullName    String
+  dateOfBirth DateTime
+  position    String
+  number      Int
+  goals       Int      @default(0)
+  assists     Int      @default(0)
 
-  entrenamientoId Int
-  entrenamimento  Entrenamiento @relation(fields: [entrenamientoId], references: [id])
+  teamId Int
+  team   Team @relation(fields: [teamId], references: [id])
 }

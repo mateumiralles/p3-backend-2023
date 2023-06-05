@@ -1,14 +1,14 @@
 version: '3'
 
 services:
-  entreamientodb:
+ leaguesdb:
     image: postgres
-    container_name: entreamientodb
+    container_name: leaguesdb
     restart: always
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=mateu
-      - POSTGRES_DB=entreamientodb
+      - POSTGRES_DB=leaguesdb
     ports:
       - 5432:5432
     volumes:

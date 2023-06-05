@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import dotenv from "dotenv";
-import usuariosRouter from './usuarios.js'
+import leaguessRouter from  './leagues.js'
 
 dotenv.config();
 
@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
-app.use("/usuarios", usuariosRouter);
+app.use("/leagues", leaguessRouter);
 
 const { SERVER_PORT } = process.env; //desestructurando
 app.listen(SERVER_PORT, () => {
