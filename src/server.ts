@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import leaguessRouter from  './leagues.js'
+import { defaultErrorHandler } from "./utils.js";
 
 dotenv.config();
 
@@ -13,6 +14,8 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 app.use("/leagues", leaguessRouter);
+
+app.use(defaultErrorHandler)
 
 const { SERVER_PORT } = process.env; //desestructurando
 app.listen(SERVER_PORT, () => {
